@@ -1,0 +1,8 @@
+Notes
+- The problem with strings and any primitive type which are part of your domain model is that they convey no meaning.
+To solve primitive obsession and also improve the design of our entity, we can use a Value Object
+
+- An entity is an object that is uniquely identified by its identity
+
+- A value object is uniquely identified by its values which means that it has structural equality which is one of the things
+that a record support. Immutability is also a feature of value object which records provide
