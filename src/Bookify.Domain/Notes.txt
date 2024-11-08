@@ -6,3 +6,5 @@ To solve primitive obsession and also improve the design of our entity, we can u
 
 - A value object is uniquely identified by its values which means that it has structural equality which is one of the things
 that a record support. Immutability is also a feature of value object which records provide
+
+- Optimistic locking is more performant than pessimistic and we do not end up locking rows in the db for an amount of time
