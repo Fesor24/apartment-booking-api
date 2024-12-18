@@ -16,7 +16,6 @@ namespace Bookify.Application.Apartments.SearchApartments
                 (int)BookingStatus.Completed
             ];
 
-
         public async Task<Result<IReadOnlyList<ApartmentResponse>>> Handle(SearchApartmentsQuery request, CancellationToken cancellationToken)
         {
             if (request.StartDate > request.EndDate) return new List<ApartmentResponse>();
@@ -63,7 +62,7 @@ namespace Bookify.Application.Apartments.SearchApartments
                 {
                     request.EndDate,
                     request.StartDate,
-                    ActiveB
+                    ActiveBookingStatuses
                 }, 
                 splitOn:"Country");
 
