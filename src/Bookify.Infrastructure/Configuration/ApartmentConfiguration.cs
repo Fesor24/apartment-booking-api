@@ -34,6 +34,8 @@ namespace Bookify.Infrastructure.Configuration
                 priceBuilder.Property(money => money.Currency)
                     .HasConversion(currency => currency.Code, code => Currency.FromCode(code));
             });
+
+            builder.Property<uint>("Version").IsRowVersion(); // define a shadow property for optimistic concurrency...
         }
     }
 }
