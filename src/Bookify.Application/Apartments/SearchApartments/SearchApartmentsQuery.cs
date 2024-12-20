@@ -2,7 +2,7 @@
 
 namespace Bookify.Application.Apartments.SearchApartments
 {
-    internal record SearchApartmentsQuery(
+    public record SearchApartmentsQuery(
         DateOnly StartDate,
         DateOnly EndDate
         ) : IQuery<IReadOnlyList<ApartmentResponse>>;
