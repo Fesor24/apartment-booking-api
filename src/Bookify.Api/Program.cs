@@ -1,3 +1,4 @@
+using Bookify.Api.Extensions;
 using Bookify.Application;
 using Bookify.Infrastructure;
 
@@ -16,9 +17,12 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.ApplyMigrations();
 }
 
-app.UseHttpsRedirection(); 
+app.UseHttpsRedirection();
+
+app.UseCustomMiddleware();
 
 app.MapControllers();
 

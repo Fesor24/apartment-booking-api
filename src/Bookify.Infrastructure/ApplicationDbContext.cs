@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bookify.Infrastructure
 {
-    internal class ApplicationDbContext(DbContextOptions options, IPublisher publisher) : DbContext(options), IUnitOfWork
+    public class ApplicationDbContext(DbContextOptions options, IPublisher publisher) : DbContext(options), IUnitOfWork
     {
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
