@@ -1,7 +1,12 @@
 ﻿using Bookify.Application.Abstractions.Clock;
 using Bookify.Application.Abstractions.Email;
+using Bookify.Domain.Abstractions;
+using Bookify.Domain.Apartments;
+using Bookify.Domain.Bookings;
+using Bookify.Domain.Users;
 using Bookify.Infrastructure.Clock;
 using Bookify.Infrastructure.Email;
+using Bookify.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +30,15 @@ namespace Bookify.Infrastructure
                 opts.UseNpgsql(connectionString)
                     .UseSnakeCaseNamingConvention();
             });
+
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IBookingRepository, BookingRepository>();
+            services.AddScoped<IApartmentRepository, ApartmentRepository>();
+
+            // Tells the DI container to resolve an instance of ApplicationDbContext
+            // The instance is then used when wherever IUniOfWork is injected
+            // For this to work, ApplicationDbContext must implement the IUnitOfWork interface
+            services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<ApplicationDbContext>());
 
             return services;
         }
