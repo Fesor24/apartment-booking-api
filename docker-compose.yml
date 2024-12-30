@@ -1,12 +1,12 @@
 services:
-  bookify.api:
+  bookify-api:
     image: ${DOCKER_REGISTRY-}bookifyapi
     container_name: Bookify.Api
     build:
       context: .
       dockerfile: src/Bookify.Api/Dockerfile
 
-  bookify.idp:
+  bookify-idp:
     image: jboss/keycloak:latest
     container_name: Bookify.Identity
     environment:
@@ -18,3 +18,12 @@ services:
         - ./.files/bookify-realm-export.json:/tmp/bookify-realm-export.json
     ports:
         - 18080:8080
+
+  bookify-seq:
+    image: datalust/seq:latest
+    container_name: Bookify.Seq
+    environment:
+        - ACCEPT_EULA=Y
+    ports:
+        - 5341:5341
+        - 8081:80  
