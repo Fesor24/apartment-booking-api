@@ -9,5 +9,6 @@ using Microsoft.AspNetCore.Http;
 namespace Bookify.Infrastructure.Authentication;
 internal class UserContext(IHttpContextAccessor httpContextAccessor) : IUserContext
 {
-    public Guid UserId => httpContextAccessor.HttpContext?.User.GetUserId()
+    public Guid UserId => httpContextAccessor.HttpContext?.User.GetUserId() ?? 
+        throw new ApplicationException("No user id");
 }
